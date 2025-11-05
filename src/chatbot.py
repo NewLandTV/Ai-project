@@ -1,5 +1,4 @@
 import ollama
-ollama.pull("mistral")
 
 def get_ai_response(user_input):
     response = ollama.chat(
@@ -18,7 +17,9 @@ def get_ai_response(user_input):
     )
     return response.message.content
 
-def run():
+async def run():
+    ollama.pull("mistral")
+
     print("=== AI와 대화하기 ===")
     print("종료하려면 'exit' 또는 'quit'을 입력하세요.\n")
     
