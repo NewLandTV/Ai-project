@@ -1,5 +1,4 @@
 import ollama
-ollama.pull("mistral")
 
 def get_ai_response(user_input):
     response = ollama.chat(
