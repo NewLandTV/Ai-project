@@ -1,34 +1,31 @@
-import asyncio
 import os
 import pytchat
 from pytchat import *
-import setup
-from setup import *
+from .setup import *
 import websockets
 
 if os.path.exists("customfunc.py"):
-    import customfunc
     from customfunc import *
 
-async def main():
+async def run(chatbot):
     try:
-        websocket = await websockets.connect('ws://127.0.0.1:8001')
-    except:
-        print("Couldn't connect to vtube studio")
+        websocket = await websockets.connect("ws://127.0.0.1:8001")
+    except Exception as e:
+        print("Couldn't connect to vtube studio", e)
         input("press enter to quit program")
         quit()
     command_list = await setup(websocket)
-    ###############################################
-    #         Main loops for yt                   #
-    ###############################################
+    # Main loops for youtube
     op = input("input stream id ")
     chat = pytchat.create(video_id=op)
     while True:
         while chat.is_alive():
+            is_command = False
             for c in chat.get().sync_items():
-                print(f"{c.datetime} [{c.author.name}] - {c.message}")
+                user_input = f"{c.message}"
+                print(f"{c.datetime} [{c.author.name}] - {user_input}")
                 for key in command_list["COMMANDS"]:
-                    if f"{c.message}" == key:
+                    if user_input == key:
                         mdinf = await getmd(websocket)
                         s = mdinf["data"]["modelPosition"]["size"]
                         r = mdinf["data"]["modelPosition"]["rotation"]
@@ -36,4 +33,10 @@ async def main():
                         y = mdinf["data"]["modelPosition"]["positionY"]
                         cm = command_list["COMMANDS"][key]
                         await eval(cm)
-asyncio.run(main())
+                        is_command = True
+                        break
+                if not is_command:  # 채팅이 명령이 아닐 때만 AI가 답변하기
+                    answer = chatbot.get_ai_response(user_input)
+                    with open("answer.txt", "w", encoding="utf-8") as f:
+                        f.write(f"{answer}")
+                    print(answer)

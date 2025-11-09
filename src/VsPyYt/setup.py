@@ -1,5 +1,5 @@
 from configparser import ConfigParser
-from func import *
+from .func import *
 import json
 import os
 

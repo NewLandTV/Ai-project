@@ -1,4 +1,4 @@
-from func import *
+from .func import *
 import time
 
 async def spin2(websocket, x, y, s):
