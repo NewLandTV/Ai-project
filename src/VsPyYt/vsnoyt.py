@@ -2,8 +2,8 @@ import os
 from .setup import *
 import websockets
 
-if os.path.exists("customfunc.py"):
-    from customfunc import *
+if os.path.exists(os.path.dirname(os.path.abspath(os.path.join(os.path.dirname(__file__), "customfunc.py")))):
+    from .customfunc import *
 
 async def run(chatbot):
     try:
