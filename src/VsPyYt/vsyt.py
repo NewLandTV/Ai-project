@@ -36,7 +36,7 @@ async def run(chatbot):
                         is_command = True
                         break
                 if not is_command:  # 채팅이 명령이 아닐 때만 AI가 답변하기
-                    answer = chatbot.get_ai_response(user_input)
+                    answer = chatbot.get_response(user_input)
                     with open("answer.txt", "w", encoding="utf-8") as f:
                         f.write(f"{answer}")
                     print(answer)

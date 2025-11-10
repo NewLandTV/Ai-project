@@ -1,31 +1,26 @@
 import ollama
 
-def get_ai_response(user_input):
-    response = ollama.chat(
-        model="mistral",
-        messages=[
-            {
-                "role": "system",
-                "content": "You are a helpful assistant."
-            },
-            {
-                
-                "role": "user",
-                "content": user_input
-            }
-        ],
-    )
-    return response.message.content
+class Chatbot:
+    def __init__(self, model="mistral", messages=[{"role": "system", "content": "You are a helpful assistant."}]):
+        self.model = model
+        self.messages = messages
 
-def run():
-    print("=== AI와 대화하기 ===")
-    print("종료하려면 'exit' 또는 'quit'을 입력하세요.\n")
+    def get_response(self, message):
+        self.messages.append({"role": "user", "content": message})
+        response = ollama.chat(model=self.model, messages=self.messages)
+        output = response.message.content
+        self.messages.append({"role": "assistant", "content": output})
+        return output
     
-    while True:
-        user_input = input("User: ")
-        if user_input.lower() in ["exit", "quit"]:
-            print("챗봇을 종료합니다.")
-            break
+    def run(self):
+        print("=== AI와 대화하기 ===")
+        print("종료하려면 'exit' 또는 'quit'을 입력하세요.\n")
+        
+        while True:
+            user_input = input("User: ")
+            if user_input.lower() in ["exit", "quit"]:
+                print("챗봇을 종료합니다.")
+                break
 
-        answer = get_ai_response(user_input)
-        print(f"AI: {answer}")
+            answer = self.get_response(user_input)
+            print(f"AI: {answer}")
