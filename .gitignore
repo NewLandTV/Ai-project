@@ -1,6 +1,9 @@
 # Configurations
 token.json
 
+# 자동 생성 파일 (인공지능 가동 동안)
+answer.txt
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
