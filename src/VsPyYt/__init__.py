@@ -1,6 +1,6 @@
 import asyncio
 
-def start(chatbot):
+def start(chatbot, obs):
     while True:
         s = input("1: yt, 2: no yt ")
         if s == "1":
@@ -10,4 +10,4 @@ def start(chatbot):
             from .vsnoyt import run
             break
 
-    asyncio.run(run(chatbot))
+    asyncio.run(run(chatbot, obs))
