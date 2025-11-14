@@ -7,7 +7,7 @@ import websockets
 if os.path.exists(os.path.dirname(os.path.abspath(os.path.join(os.path.dirname(__file__), "customfunc.py")))):
     from .customfunc import *
 
-async def run(chatbot):
+async def run(chatbot, obs):
     try:
         websocket = await websockets.connect("ws://127.0.0.1:8001")
     except Exception as e:
@@ -36,7 +36,9 @@ async def run(chatbot):
                         is_command = True
                         break
                 if not is_command:  # 채팅이 명령이 아닐 때만 AI가 답변하기
-                    answer = chatbot.get_response(user_input)
-                    with open("answer.txt", "w", encoding="utf-8") as f:
-                        f.write(f"{answer}")
-                    print(answer)
+                    text = ""
+                    for answer in chatbot.get_response(user_input):
+                        text += answer
+                        obs.update_obs_text("Answer Text", text)
+                        print(answer, end='', flush=True)
+                    print()
