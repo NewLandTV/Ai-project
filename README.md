@@ -17,6 +17,7 @@
 
 [![방송하는 AI 버튜버 만들기 (Ai project)](https://img.youtube.com/vi/LApZVb76Qj4/0.jpg)](https://www.youtube.com/watch?v=LApZVb76Qj4)
 
+[![실시간 인공지능 버튜버 만드는 법 (Ai project)](https://img.youtube.com/vi/qJGM1dSWAxo/0.jpg)](https://www.youtube.com/watch?v=qJGM1dSWAxo)
 
 # Ⅱ. 관련 링크
 
