@@ -7,6 +7,9 @@ token.json
 # 자동 생성 파일 (인공지능 가동 동안)
 answer.txt
 
+# 명령어로 인해 자동으로 생성된 파일 (commands/)
+word.out
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
