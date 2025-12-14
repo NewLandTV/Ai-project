@@ -10,11 +10,11 @@ int main(int argc, char* argv[])
 {
     setlocale(LC_ALL, "korean");
 
-    // 매개변수 검사 (입력 단어가 있는가?)
-    if (argc != 2)
+    // 매개변수 검사 (입력 단어가 있는가? 단어 파일의 경로가 있는가?)
+    if (argc < 3)
     {
         wprintf(L"잘못된 매개변수 입력.\n");
-        wprintf(L"올바른 매개변수 : worch.exe \"입력 단어\"");
+        wprintf(L"올바른 매개변수 : worch.exe \"입력 단어\" \"단어 파일의 경로\"\n");
 
         return 1;
     }
@@ -28,7 +28,7 @@ int main(int argc, char* argv[])
         free(word);
     }
 
-    FILE* fp = fopen("word.txt", "w,ccs=UTF-8");
+    FILE* fp = fopen(argv[2], "w,ccs=UTF-8");
 
     if (fp == NULL)
     {

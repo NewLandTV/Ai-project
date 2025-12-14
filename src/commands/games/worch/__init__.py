@@ -2,7 +2,7 @@ import os
 
 directory = os.path.dirname(__file__)
 program_path = os.path.join(directory, "worch.exe")
-word_path = "word.txt"
+word_path = os.path.join(directory, "word.out")
 
 def run():
     print("v0.1.0 WORCH 모듈입니다!")
@@ -10,7 +10,7 @@ def run():
     while True:
         word = input("단어를 입력하세요. ")
         
-        os.system(f"{program_path} {word}")
+        os.system(f"{program_path} {word} {word_path}")
         if not os.path.exists(word_path):
             print("다시 입력해 주세요.")
             continue
