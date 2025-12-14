@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <wchar.h>
 #include <string.h>
 #include <locale.h>
 #include <stdlib.h>
