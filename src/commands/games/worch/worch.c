@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <wchar.h>
+#include <string.h>
+#include <locale.h>
+#include <stdlib.h>
+
+wchar_t* CharToWChar(const char* multiByte);
+
+int main(int argc, char* argv[])
+{
+    // 매개변수 검사 (입력 단어가 있는가?)
+    if (argc != 2)
+    {
+        wprintf(L"잘못된 매개변수 입력.\n");
+        wprintf(L"올바른 매개변수 : worch.exe \"입력 단어\"");
+
+        return 1;
+    }
+
+    setlocale(LC_ALL, "korean");
+
+    wchar_t* word = CharToWChar(argv[1]);
+
+    wprintf(L"입력한 단어 : %ls\n", word);
+
+    if (word != NULL)
+    {
+        free(word);
+    }
+
+    return 0;
+}
+
+wchar_t* CharToWChar(const char* multiByte)
+{
+    size_t size = strlen(multiByte) + 1;
+    wchar_t* wide = (wchar_t*)malloc(size);
+    size_t converted = mbstowcs(wide, multiByte, size);
+
+    if (converted == (size_t) - 1)
+    {
+        free(wide);
+
+        return NULL;
+    }
+
+    return wide;
+}

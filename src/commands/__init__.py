@@ -11,7 +11,7 @@ def try_run(command):
     length = len(prefix)
     command = command[length:]
     split = command.split(".")
-    path = f"{os.path.join(*split)}.py"
+    path = os.path.join(*split)
     if not os.path.exists(os.path.join(directory, path)):
         return False
     
