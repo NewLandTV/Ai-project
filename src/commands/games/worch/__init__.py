@@ -10,7 +10,7 @@ def run():
     while True:
         word = input("단어를 입력하세요. ")
         
-        os.system(f"{program_path} {word} {word_path}")
+        os.system(f"{program_path} \"{word}\" \"{word_path}\"")
         if not os.path.exists(word_path):
             print("다시 입력해 주세요.")
             continue
