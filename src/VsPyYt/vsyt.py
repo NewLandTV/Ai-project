@@ -3,6 +3,7 @@ import pytchat
 from pytchat import *
 from .setup import *
 import websockets
+import commands
 
 if os.path.exists(os.path.dirname(os.path.abspath(os.path.join(os.path.dirname(__file__), "customfunc.py")))):
     from .customfunc import *
@@ -35,7 +36,7 @@ async def run(chatbot, obs):
                         await eval(cm)
                         is_command = True
                         break
-                if not is_command:  # 채팅이 명령이 아닐 때만 AI가 답변하기
+                if not is_command and not commands.try_run(chat):   # 채팅이 명령이 아닐 때만 AI가 답변하기
                     text = ""
                     for answer in chatbot.get_response(user_input):
                         text += answer

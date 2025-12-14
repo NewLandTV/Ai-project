@@ -1,0 +1,1 @@
+@gcc worch.c -o worch.exe
