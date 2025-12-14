@@ -12,7 +12,7 @@ def try_run(command):
     command = command[length:]
     split = command.split(".")
     path = os.path.join(*split)
-    if not os.path.exists(os.path.join(directory, path)):
+    if len(command) == 0 or not os.path.exists(os.path.join(directory, path)):
         return False
     
     module = import_module(f"commands.{command}")
