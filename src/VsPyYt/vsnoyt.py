@@ -16,7 +16,7 @@ async def run(chatbot, obs):
     command_list = await setup(websocket)
     while True:
         is_command = False
-        word = input("enter command ")
+        word = input("메시지 입력 : ")
         for key in command_list["COMMANDS"]:
             if word == key:
                 print("executing")
