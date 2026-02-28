@@ -2,7 +2,6 @@ import os
 import sys
 from chatbot import Chatbot
 from obs import OBS
-import VsPyYt
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -31,14 +30,13 @@ def main():
     obs.connect_obs_websocket()
 
     mode = int(sys.argv[1])
-
-    if mode == 1:
-        # Vtube Studio, YouTube 실시간 채팅창 연동
-        VsPyYt.start(chatbot, obs)
-    elif mode == 2:
-        pass    # TODO: CLI 모드 구현 (VTube Studio 없이 실행할 수 있는 모드)
+    if mode == 1:   # Vtube Studio, YouTube 실시간 채팅창 연동
+        from VsPyYt import start
+    elif mode == 2: # VTube Studio 없이 인공지능 버튜버를 콘솔 환경에서 
+        from cli import start
     else:
         print("GUI 모드는 구현되지 않았습니다.")
+    start(chatbot, obs)
 
 if __name__ == "__main__":
     main()
