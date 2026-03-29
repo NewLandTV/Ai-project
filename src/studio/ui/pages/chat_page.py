@@ -34,6 +34,7 @@ class ChatPage(QWidget):
         self.input_box.setFixedHeight(70)
         
         self.send_btn = QPushButton("보내기")
+        self.send_btn.setFixedHeight(70)
 
         input_layout.addWidget(self.input_box)
         input_layout.addWidget(self.send_btn)
