@@ -1,8 +1,10 @@
 from PySide6.QtWidgets import (
-    QMainWindow, QWidget,
+    QApplication, QMainWindow, QWidget,
     QHBoxLayout, QVBoxLayout,
-    QStackedWidget
+    QStackedWidget, QMessageBox
 )
+from PySide6.QtCore import Qt
+from PySide6.QtGui import QKeyEvent
 from ..ui.sidebar import Sidebar
 from ..ui.topbar import TopBar
 from ..ui.pages.chat_page import ChatPage
@@ -51,3 +53,24 @@ class MainWindow(QMainWindow):
         self.sidebar.btn_chat.clicked.connect(lambda: self.stack.setCurrentIndex(0))
         self.sidebar.btn_model.clicked.connect(lambda: self.stack.setCurrentIndex(1))
         self.sidebar.btn_settings.clicked.connect(lambda: self.stack.setCurrentIndex(2))
+
+    def show_quit_comfirm(self):
+        # 메시지 박스 생성
+        msg = QMessageBox()
+        msg.setWindowTitle("종료 확인")
+        msg.setText("정말로 프로그램을 종료하시겠습니까?")
+        msg.setIcon(QMessageBox.Icon.Question)
+
+        # 예, 아니오 버튼 추가
+        msg.setStandardButtons(QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
+
+        # 결과 처리
+        result = msg.exec()
+        if result == QMessageBox.StandardButton.Yes:
+            QApplication.quit()
+
+    def keyPressEvent(self, event: QKeyEvent):
+        if event.key() == Qt.Key.Key_Escape:
+            self.show_quit_comfirm()
+
+        return super().keyPressEvent(event)

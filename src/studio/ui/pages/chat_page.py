@@ -1,8 +1,10 @@
 from PySide6.QtWidgets import (
     QWidget, QHBoxLayout, QVBoxLayout,
-    QTextEdit, QPushButton, QScrollArea
+    QPushButton, QScrollArea
 )
 from PySide6.QtCore import Qt
+from PySide6.QtGui import QTextCursor
+from studio.ui.components.submit_text_edit import SubmitTextEdit
 from studio.ui.components.message_bubble import MessageBubble
 
 class ChatPage(QWidget):
@@ -28,7 +30,7 @@ class ChatPage(QWidget):
         # 입력 영역
         input_layout = QHBoxLayout()
 
-        self.input_box = QTextEdit()
+        self.input_box = SubmitTextEdit(self.send_message)
         self.input_box.setFixedHeight(70)
         
         self.send_btn = QPushButton("보내기")
