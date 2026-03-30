@@ -5,6 +5,7 @@ from PySide6.QtWidgets import (
 )
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QKeyEvent
+from ..ui.capture_view import CaptureView
 from ..ui.sidebar import Sidebar
 from ..ui.topbar import TopBar
 from ..ui.pages.chat_page import ChatPage
@@ -23,6 +24,9 @@ class MainWindow(QMainWindow):
 
         # 전체 레이아웃
         main_layout = QHBoxLayout(central)
+
+        # 모델 캡처 화면
+        self.capture_view = CaptureView()
 
         # 사이드바
         self.sidebar = Sidebar()
@@ -46,6 +50,7 @@ class MainWindow(QMainWindow):
         content_layout.addWidget(self.stack)
 
         # 레이아웃 결합
+        main_layout.addWidget(self.capture_view, 5)
         main_layout.addWidget(self.sidebar, 1)
         main_layout.addLayout(content_layout, 4)
 
