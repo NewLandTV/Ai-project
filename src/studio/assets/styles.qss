@@ -1,0 +1,22 @@
+/* Ai 스튜디오 전역 테마 */
+
+/* ui\components */
+QLabel {
+    background-color: #1f2937;
+    color: white;
+    padding: 12px;
+    border-radius: 16px;
+}
+
+/* \message_bubble.py */
+QLabel[messageType="user"] {
+    background-color: #2563eb;
+    color: white;
+    padding: 12px;
+    border-radius: 16px;
+}
+
+/* ui\capture_view.py */
+QLabel[messageType="transparent"] {
+    background: transparent;
+}

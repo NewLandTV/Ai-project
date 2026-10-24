@@ -10,21 +10,14 @@ class MessageBubble(QWidget):
         self.label.setWordWrap(True)
         self.label.setMaximumWidth(500)
 
+        # 메시지 종류에 따라 스타일 설정하기
+        message_type = "user" if is_user else "ai"
+        self.label.setProperty("messageType", message_type)
+
+        # 레이아웃 정렬
         if is_user:
-            self.label.setStyleSheet("""
-                background-color: #2563eb;
-                color: white;
-                padding: 12px;
-                border-radius: 16px;
-            """)
             layout.addStretch()
             layout.addWidget(self.label)
         else:
-            self.label.setStyleSheet("""
-                background-color: #1f2937;
-                color: white;
-                padding: 12px;
-                border-radius: 16px;
-            """)
             layout.addWidget(self.label)
             layout.addStretch()

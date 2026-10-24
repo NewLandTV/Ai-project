@@ -46,7 +46,7 @@ class CaptureView(QWidget):
 
         self.label = QLabel("모델 화면")
         self.label.setFixedSize(800, 800)
-        self.label.setStyleSheet("background: transparent;")
+        self.label.setProperty("messageType", "transparent")
 
         # 투명 화면 설정
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)

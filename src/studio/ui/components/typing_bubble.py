@@ -9,13 +9,7 @@ class TypingBubble(QWidget):
         
         self.text = "Ai가 답볍을 생각하고 있어요"
         self.label = QLabel(self.text)
-
-        self.label.setStyleSheet("""
-            background-color: #1f2937;
-            color: white;
-            padding: 12px;
-            border-radius: 16px;
-        """)
+        
         layout.addWidget(self.label)
         layout.addStretch()
         
