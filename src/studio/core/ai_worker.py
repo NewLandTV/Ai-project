@@ -3,6 +3,7 @@ from PySide6.QtCore import QObject, Signal, Slot
 
 class AIWorker(QObject):
     response_ready = Signal(str)
+    error_occurred = Signal(str)
 
     def __init__(self, chatbot):
         super().__init__()
@@ -11,7 +12,10 @@ class AIWorker(QObject):
 
     @Slot(str)
     def process(self, text):
-        asyncio.run(self.run_ai(text))
+        try:
+            asyncio.run(self.run_ai(text))
+        except Exception as e:
+            self.error_occurred.emit(str(e))
 
     async def run_ai(self, text):
         response = "".join(self.chatbot.get_response(text))
