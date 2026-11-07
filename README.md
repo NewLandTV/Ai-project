@@ -30,7 +30,7 @@
 
 ### 1. Ai 프로젝트 리포지토리 설치
 
-&nbsp;&nbsp;&nbsp;&nbsp;본 프로젝트 GitHub 페이지에 있는 **<> Code ▼** 버툰을 누르고 **Download ZIP** 또는 아래의 과정 (1)을 수행합니다.
+&nbsp;&nbsp;&nbsp;&nbsp;본 프로젝트 GitHub 페이지에 있는 **<> Code ▼** 버튼을 누르고 **Download ZIP** 또는 아래의 과정 (1)을 수행합니다.
 
 **과정 (1)**
 
